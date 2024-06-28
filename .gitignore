@@ -1,0 +1,6 @@
+.vsnode/
+Logs/
+Packages/
+UserSettings/
+Assembly-CSharp.csproj
+Medievaly.sln
