@@ -8,7 +8,10 @@ public class ThirdPersonController : MonoBehaviour
     public Transform cam;
 
     public float speed = 6f;
-    public float sprintSpeed = 12f;
+    public float sprintSpeed = 10f;
+    public float dashForce = 32f;
+    public float dashTime=0f;
+    public float dashDuration=0f;
     public float gravity = -9.81f;
     public float jumpHeight = 1.5f;
     public float turnSmoothTime = 0.1f;
@@ -54,6 +57,15 @@ public class ThirdPersonController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+        // Dash implementation
+        if (Input.GetKeyDown(KeyCode.F) && dashTime <= 0f) // Only allow dash when grounded and not currently dashing
+        {
+            dashTime = dashDuration; 
+            Vector3 dashDirection = cam.forward;
+            controller.Move(dashDirection * dashForce * Time.deltaTime);
+        }
+        dashTime -= Time.deltaTime;
+        
         // Apply gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
