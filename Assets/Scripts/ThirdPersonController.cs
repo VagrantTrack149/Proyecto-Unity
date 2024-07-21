@@ -12,6 +12,7 @@ public class ThirdPersonController : MonoBehaviour
     public float dashForce = 32f;
     public float dashTime=0f;
     public float dashDuration=0f;
+    public float cooldownDash=2f;
     public float gravity = -9.81f;
     public float jumpHeight = 1.5f;
     public float turnSmoothTime = 0.1f;
@@ -58,7 +59,7 @@ public class ThirdPersonController : MonoBehaviour
         }
 
         // Dash implementation
-        if (Input.GetKeyDown(KeyCode.F) && dashTime <= 0f) // Only allow dash when grounded and not currently dashing
+        if (Input.GetKeyDown(KeyCode.F) && dashTime <= -cooldownDash) // Only allow dash when grounded and not currently dashing
         {
             dashTime = dashDuration; 
             Vector3 dashDirection = cam.forward;
