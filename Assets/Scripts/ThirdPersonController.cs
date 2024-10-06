@@ -29,7 +29,11 @@ public class ThirdPersonController : MonoBehaviour
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
+        if (isGrounded){
+            animator.SetBool("IsJump", false);
+        }else{
+            animator.SetBool("IsJump", true);
+        }
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -60,13 +64,6 @@ public class ThirdPersonController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            animator.SetBool("IsJump", true);
-            StartCoroutine(WaitForJumpEnd());
-        }
-        IEnumerator WaitForJumpEnd()
-        {
-            yield return new WaitForSeconds(1f);
-            animator.SetBool("IsJump", false);
         }
         // Dash 
         if (Input.GetKeyDown(KeyCode.F) && dashTime <= -cooldownDash)
