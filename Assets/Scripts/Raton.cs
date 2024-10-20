@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactuar_objeto : MonoBehaviour
+public class Raton : MonoBehaviour
 {
     public Inventario inventario;
+    public GameObject ratonImagen;
     void Start()
     {
         inventario = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventario>();
+        ratonImagen=GameObject.Find("Raton");
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag=="Player")
         {
-            inventario.pez=true;
+            inventario.raton=false;
+            ratonImagen.SetActive(false);
             Destroy(gameObject);
         }
     }
