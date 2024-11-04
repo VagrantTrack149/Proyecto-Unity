@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Play : MonoBehaviour
 {
+    public Canvas canvas;
+    public Canvas canvas1;
+    public void QuitarCanva(){
+        canvas.gameObject.SetActive(false);
+        canvas1.gameObject.SetActive(true);
+    }
     public void Escena1(){
         
        if (SceneManager.GetActiveScene().buildIndex == 1)

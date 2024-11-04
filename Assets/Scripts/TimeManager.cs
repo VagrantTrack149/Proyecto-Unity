@@ -15,6 +15,7 @@ public class TimeManager : MonoBehaviour
     {
         float elapsedTime = Time.time - startTime;
         PlayerPrefs.SetFloat("ElapsedTime", elapsedTime);
-        SceneManager.LoadScene(2);
+        
+        SceneManager.LoadScene("End");
     }
 }
